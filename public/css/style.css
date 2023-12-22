@@ -1,74 +1,143 @@
+/* Polices et couleurs de base */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #E8F0FE;
+  /* Couleur de fond plus douce */
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  color: #333;
 }
 
-header {
-  background-color: #333;
-  color: white;
-  padding: 10px 0;
+/* En-tête et pied de page */
+header,
+footer {
+  background-color: #20232A;
+  /* Couleur de fond plus sombre pour le contraste */
+  color: #FFFFFF;
+  text-align: center;
+  padding: 1em 0;
+}
+
+/* Navigation */
+nav ul {
+  padding: 0;
+  list-style: none;
   text-align: center;
 }
 
-header nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-header nav ul li {
+nav ul li {
   display: inline;
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
-header nav ul li a {
-  color: white;
+nav ul li a {
+  color: #61DAFB;
+  /* Couleur lumineuse pour les liens */
   text-decoration: none;
+  transition: color 0.3s;
 }
 
+nav ul li a:hover {
+  color: #FFFFFF;
+}
+
+/* Contenu principal */
 main {
-  margin: 20px;
+  padding: 20px;
+  display: grid;
+  grid-gap: 20px;
+}
+
+/* Sections d'authentification */
+#auth {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .auth-section {
-  background-color: white;
-  border-radius: 5px;
+  background-color: #FFFFFF;
   padding: 20px;
-  margin: 10px;
-  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Ombre plus prononcée */
+  width: calc(50% - 10px);
+  min-width: 300px;
 }
 
-.auth-section form {
-  display: flex;
-  flex-direction: column;
+.auth-section h2 {
+  color: #4CAF50;
+  /* Couleur de titre ajustée */
+  margin-top: 0;
 }
 
-.auth-section input {
-  margin-bottom: 10px;
+/* Champs de formulaire et boutons */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
   padding: 10px;
+  margin: 10px 0;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #DDD;
 }
 
-.auth-section button {
-  background-color: #333;
-  color: white;
+form button {
+  width: 100%;
   padding: 10px;
+  background-color: #007BFF;
+  /* Couleur primaire pour les boutons */
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-footer {
-  text-align: center;
+form button:hover {
+  background-color: #0056b3;
+  /* Couleur secondaire pour hover */
+}
+
+/* Flux et amis */
+#feed,
+#friends {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Posts et amis */
+#feed .post,
+.friend-list li {
+  background-color: #F8F9FA;
+  /* Couleur de fond légère pour les posts et amis */
   padding: 10px;
-  background-color: #333;
-  color: white;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-footer p {
-  margin: 0;
+.post h3 {
+  margin-top: 0;
+  color: #007BFF;
+  /* Couleur de titre pour les posts */
+}
+
+.post img,
+.friend-list li img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Ajouts de responsive design */
+@media (max-width: 768px) {
+
+  .auth-section,
+  #feed,
+  #friends {
+    width: 100%;
+  }
 }

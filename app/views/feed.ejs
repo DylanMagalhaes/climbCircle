@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+  <main>
+    <section id="welcome">
+      <h2>Bienvenue, <%= user %> !</h2>
+      <p>Content de vous revoir sur ClimbConnect.</p>
+    </section>
+
+    <section id="feed">
+      <h2>Votre Fil d'Actualité</h2>
+      <div class="post">
+        <h3>Alice</h3>
+        <p>Quelle belle journée pour une randonnée !</p>
+        <img src="/images/rando.jpeg" alt="Randonnée d'Alice">
+      </div>
+      <div class="post">
+        <h3>Bob</h3>
+        <p>Je viens de battre mon record personnel en escalade !</p>
+        <img src="/images/record.jpeg" alt="Escalade de Bob">
+      </div>
+      <!-- Plus de posts... -->
+    </section>
+
+    <section id="friends">
+      <h2>Vos Amis</h2>
+      <ul class="friend-list">
+        <%for (friend of friends){%>
+          <li>
+            <%=friend.username%>
+          </li>
+          <%}%>
+            <!-- Plus d'amis... -->
+      </ul>
+    </section>
+  </main>
+
+  <%- include("partials/footer.ejs") %>

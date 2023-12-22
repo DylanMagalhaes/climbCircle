@@ -10,15 +10,13 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
-//* pour la mise en place de express session
-//* ce middleware permettra d'accéder à request.session sur toutes les routes
 app.use(
   session({
     secret: 'keyboard cat', //! A METTRE dans le fichier .env !!!!!!!!!!!!
     resave: true,
-    saveUninitialized: true, //* il se crée automatiquement dés la 1ere request
+    saveUninitialized: true,
     cookie: {
-      maxAge: 1000 * 60 * 60, //* le token ne sera valable qu'un heure
+      maxAge: 1000 * 60 * 60,
     },
   })
 );
