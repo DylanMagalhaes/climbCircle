@@ -2,16 +2,18 @@
 
   <main>
     <section class="searchResults">
-      <%if (climbers) {%>
+      <% if (climbers && climbers.length> 0) { %>
         <ul>
-          <%for(climber of climbers){%>
+          <% for (const climber of climbers) { %>
             <li>
-              <%= climber.username%>
+              <%= climber.username %>
                 <button class="addFriendButton">Ajouter en ami</button>
             </li>
-            <%}%>
+            <% } %>
         </ul>
-        <%}%>
+        <% } else { %>
+          <p> Aucun grimpeur correspondant trouvé.</p>
+          <% } %>
     </section>
   </main>
 

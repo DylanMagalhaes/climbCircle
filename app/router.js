@@ -10,7 +10,12 @@ const friendList = require('./middleware/friendListMw');
 
 router.get('/', mainController.homePage);
 
+
 router.post('/login', authentification.isRegister, friendList.showFriendsList, mainController.displayFeed)
+
+router.use(authentification.isLoggedIn)
+
+router.get('/feed', friendList.showFriendsList, mainController.displayFeed)
 
 router.get('/search/results', mainController.searchResults)
 

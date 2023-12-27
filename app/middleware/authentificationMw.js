@@ -28,6 +28,15 @@ const authenticationMw = {
       res.status(500).send("Le nom d'utilisateur ou le mot de passe saisis est incorrect");
     }
   },
+
+  isLoggedIn(req, res, next) {
+    if (req.session.userId) {
+      next();
+    } else {
+      res.status(401).send("Non autorisé");
+    }
+  }
+
 };
 
 module.exports = authenticationMw;
