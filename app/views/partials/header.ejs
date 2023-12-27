@@ -5,17 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil - ClimbConnect</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <header>
     <h1>ClimbConnect</h1>
-    <nav>
-      <ul>
-        <% if(pageTitle !="home" ){%>
-          <li><a href="/">Se déconnecter</a></li>
-          <%}%>
-      </ul>
-    </nav>
+    <% if (pageTitle !=="home" ) { %>
+      <nav aria-label="Navigation principale">
+        <form action="/search/results" method="get" class="search-form">
+          <input type="text" placeholder="Rechercher un grimpeur" name="searchClimber" class="search-input"
+            aria-label="Recherche">
+          <button type="submit" class="search-button">Rechercher</button>
+        </form>
+        <ul class="navigation-menu">
+          <li><a href="/" class="logout-link">Se déconnecter</a></li>
+        </ul>
+      </nav>
+      <% } %>
   </header>

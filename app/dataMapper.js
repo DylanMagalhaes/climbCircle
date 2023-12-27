@@ -18,7 +18,6 @@ const dataMapper = {
     const sql = `SELECT * FROM climber WHERE username=$1`;
     const values = [username]
     const results = await client.query(sql, values)
-    console.log("Utilisateur :", results.rows[0]);
 
     return results.rows[0];
   },
@@ -27,9 +26,16 @@ const dataMapper = {
     const sql = 'SELECT c.* FROM climber c JOIN friendships f ON c.id = f.friend_id WHERE f.climber_id = $1';
     const values = [climberId];
     const results = await client.query(sql, values);
-    console.log(results.rows);
+    return results.rows;
+  },
+
+  searchClimber: async (username) => {
+    const sql = `SELECT * FROM climber WHERE username ILIKE $1`;
+    const values = [`${username}%`];
+    const results = await client.query(sql, values);
     return results.rows;
   }
+
 }
 
 module.exports = dataMapper;
