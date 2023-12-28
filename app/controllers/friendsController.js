@@ -1,15 +1,20 @@
 const dataMapper = require('../dataMapper')
 
 const friendsController = {
-  friendsList: async () => {
+  addFriend: async (req, res) => {
     try {
-      const friends = await dataMapper.getAllFriends(req.session.userName)
+      const username = req.session.username;
+      const friendToAdd = req.body.friendUsername;
+
+      await dataMapper.addFriend(username, friendToAdd);
+      res.redirect('/feed');
 
     } catch (error) {
       console.log(error.message);
       res.status(500).send(error.message);
     }
   }
+
 }
 
 module.exports = friendsController

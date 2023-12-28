@@ -19,15 +19,15 @@ const mainController = {
   registration: async (req, res) => {
 
     try {
-      const { userName } = req.body
+      const { username } = req.body
       const { email } = req.body
       const { password } = req.body
 
-      const rowCount = await dataMapper.registrationNewUser(userName, email, password)
+      const rowCount = await dataMapper.registrationNewUser(username, email, password)
       if (rowCount !== 1) {
         res.status(500).send('Aucun enregistrement créé');
       } else {
-        res.redirect(`/authentification`);
+        res.redirect(`/`);
         console.log(rowCount)
       }
     } catch (error) {
@@ -52,21 +52,24 @@ const mainController = {
   },
 
   async searchResults(req, res) {
-
     try {
-      const { searchClimber } = req.query
-      const climbers = await dataMapper.searchClimber(searchClimber)
-      console.log(climbers)
+      const { searchClimber } = req.query;
+      let climbers = await dataMapper.searchClimber(searchClimber);
+
+      for (const climber of climbers) {
+        climber.isFriend = await dataMapper.isFriend(req.session.username, climber.username);
+      }
+
       res.render('searchResults.ejs', {
         climbers,
         pageTitle: 'searchResults'
-      })
+      });
 
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      res.status(500).send("Erreur lors de la recherche des grimpeurs");
     }
   }
-
 
 };
 

@@ -7,9 +7,17 @@
           <% for (const climber of climbers) { %>
             <li>
               <%= climber.username %>
-                <button class="addFriendButton">Ajouter en ami</button>
+                <% if (!climber.isFriend) { %>
+                  <form action="/addFriend" method="post">
+                    <input type="hidden" name="friendUsername" value="<%= climber.username %>">
+                    <button type="submit">Ajouter en ami</button>
+                  </form>
+                  <% } else { %>
+                    <span>Ami</span>
+                    <% } %>
             </li>
             <% } %>
+
         </ul>
         <% } else { %>
           <p> Aucun grimpeur correspondant trouvé.</p>

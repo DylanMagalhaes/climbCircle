@@ -38,11 +38,3 @@ VALUES (
         'user3@gmail.com',
         'password3'
     );
-
-INSERT INTO
-    friendships (climber_id, friend_id)
-SELECT c1.id, c2.id
-FROM climber c1, climber c2
-WHERE
-    c1.username = 'raziuko'
-    AND c2.username != 'raziuko';
