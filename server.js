@@ -10,6 +10,9 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
+app.use('/uploads', express.static('uploads'));
+
+
 app.use(
   session({
     secret: 'keyboard cat', //! A METTRE dans le fichier .env !!!!!!!!!!!!

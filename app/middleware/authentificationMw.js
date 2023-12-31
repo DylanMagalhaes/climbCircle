@@ -10,7 +10,6 @@ const authenticationMw = {
     try {
       const user = await dataMapper.getUserByUserName(req.session.username);
 
-      // Ajout d'une vérification pour s'assurer que l'utilisateur existe
       if (!user) {
         res.status(401).send("utilisateur introuvable");
         return;
@@ -18,7 +17,7 @@ const authenticationMw = {
 
       if (req.session.username === user.username && req.session.password === user.password) {
         console.log("______ Connexion réussie _________", user);
-        req.session.userId = user.id; // Assurez-vous que c'est 'id' et non 'Id'
+        req.session.userId = user.id;
         next();
       } else {
         res.status(401).send("Accès refusé");

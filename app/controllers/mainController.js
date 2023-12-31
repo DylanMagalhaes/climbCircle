@@ -4,7 +4,6 @@ const { trace } = require('../router');
 
 const mainController = {
   homePage: (req, res) => {
-    console.log(req.session);
     res.render('home.ejs', {
       pageTitle: "home"
     });
@@ -26,10 +25,11 @@ const mainController = {
       const rowCount = await dataMapper.registrationNewUser(username, email, password)
       if (rowCount !== 1) {
         res.status(500).send('Aucun enregistrement créé');
+
       } else {
         res.redirect(`/`);
-        console.log(rowCount)
       }
+
     } catch (error) {
       console.log(error.message);
       res.status(500).send(error.message);
@@ -40,10 +40,12 @@ const mainController = {
     try {
       const userId = req.session.userId;
       const friends = await dataMapper.getAllFriendsOfClimber(userId);
+      const posts = await dataMapper.getAllposts()
       res.render('feed.ejs', {
         user: req.session.username,
         pageTitle: "feed",
-        friends
+        friends,
+        posts
       });
     } catch (error) {
       console.error(error);

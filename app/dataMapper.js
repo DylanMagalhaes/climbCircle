@@ -5,7 +5,6 @@ const dataMapper = {
     const sql = `INSERT INTO climber(username, email, password) VALUES ($1, $2, $3)`;
     const values = [username, email, password]
     const results = await client.query(sql, values)
-    console.log("__________________ new USER " + results.rowCount);
     return results.rowCount;
   },
 
@@ -58,10 +57,23 @@ const dataMapper = {
       WHERE c1.username = $1 AND c2.username = $2
       OR c1.username = $2 AND c2.username = $1`;
     const values = [username, potentialFriend];
-    const result = await client.query(sql, values);
-    return result.rows[0].count > 0;
-  }
+    const results = await client.query(sql, values);
+    return results.rows[0].count > 0;
+  },
 
+  addPost: async (userId, content, imageUrl) => {
+
+    const sql = `INSERT INTO posts(climber_id, "content", image_url) VALUES ($1, $2, $3)`
+    const values = [userId, content, imageUrl]
+    const results = await client.query(sql, values)
+    return results.rows
+  },
+
+  getAllposts: async () => {
+    const sql = `SELECT * FROM posts INNER JOIN climber on posts.climber_id = climber.id; `;
+    const results = await client.query(sql)
+    return results.rows;
+  }
 
 }
 

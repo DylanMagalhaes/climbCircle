@@ -19,6 +19,18 @@ CREATE TABLE
         FOREIGN KEY (friend_id) REFERENCES climber(id)
     );
 
+CREATE TABLE
+    IF NOT EXISTS posts (
+        id SERIAL PRIMARY KEY,
+        climber_id INT,
+        content TEXT,
+        post_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        image_url TEXT,
+        FOREIGN KEY (climber_id) REFERENCES climber(id)
+    );
+
+INSERT INTO posts(climber_id, "content") VALUES ($1, $2)
+
 INSERT INTO
     climber (username, email, password)
 VALUES (

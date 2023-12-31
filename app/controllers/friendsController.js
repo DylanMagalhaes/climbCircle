@@ -18,3 +18,4 @@ const friendsController = {
 }
 
 module.exports = friendsController
+

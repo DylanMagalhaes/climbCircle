@@ -6,19 +6,44 @@
       <p>Content de vous revoir sur ClimbConnect.</p>
     </section>
 
+    <section>
+      <div class="container">
+        <h1>Publier un Poste</h1>
+        <form action="/addPost" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="content">Contenu du Poste:</label>
+            <textarea id="content" name="content" rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="image">Choisir une image:</label>
+            <input type="file" id="image" name="image_url" accept="image/*">
+          </div>
+          <button type="submit">Publier</button>
+        </form>
+
+      </div>
+    </section>
+
     <section id="feed">
       <h2>Votre Fil d'Actualité</h2>
-      <div class="post">
-        <h3>Alice</h3>
-        <p>Quelle belle journée pour une randonnée !</p>
-        <img src="/images/rando.jpeg" alt="Randonnée d'Alice">
-      </div>
-      <div class="post">
-        <h3>Bob</h3>
-        <p>Je viens de battre mon record personnel en escalade !</p>
-        <img src="/images/record.jpeg" alt="Escalade de Bob">
-      </div>
-      <!-- Plus de posts... -->
+
+      <%for(post of posts){%>
+        <div class="post">
+          <h3>
+            <%=post.username%>
+          </h3>
+          <p>
+            <%=post.post_date%>>
+          </p>
+          <p>
+            <%=post.content%>
+          </p>
+          <% if (post.image_url) { %>
+            <img src="<%=post.image_url%>" alt="Image du post">
+            <% } %>
+        </div>
+        <%}%>
+          <!-- Plus de posts... -->
     </section>
 
     <section id="friends">
